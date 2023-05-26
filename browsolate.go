@@ -1,4 +1,4 @@
-package main
+package browsolate
 
 import (
 	"fmt"
@@ -8,24 +8,7 @@ import (
 	"os/user"
 	"strconv"
 	"syscall"
-	"time"
 )
-
-func init() {
-	rand.Seed(time.Now().UTC().UnixNano())
-}
-
-func main() {
-	if len(os.Args) < 2 {
-		log.Print("not enough args")
-		os.Exit(2)
-	}
-	opts := &InstanceOpts{}
-	err := StartIsolatedChromeInstance(os.Args[1], opts)
-	if err != nil {
-		fmt.Printf("oh no! %v", err)
-	}
-}
 
 func randomColor() string {
 	return fmt.Sprintf("%d,%d,%d", rand.Intn(255), rand.Intn(255), rand.Intn(255))
